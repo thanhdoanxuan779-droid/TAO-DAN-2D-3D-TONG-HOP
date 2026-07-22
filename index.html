@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Tool Lô</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+<style>
+.title{
+  color:#7dd3fc;
+  font-weight:700;
+  text-align:center;
+  margin:10px 0;
+}
+
+body{
+  background:#0b141a;
+  color:#e6edf3;
+  font-family:sans-serif;
+}
+
+/* tabs */
+
+.tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:10px;
+  overflow-x:auto;
+}
+
+.tab-btn{
+  flex:1;
+  padding:12px 4px;
+  text-align:center;
+  border-radius:10px;
+  background:#1b2a32;
+  font-weight:700;
+  font-size:15px;
+  color:#cfe6ee;
+}
+
+.tab-btn.active{
+  background:#144d57;
+  color:#fff;
+}
+
+.tab{display:none}
+.tab.active{display:block}
+
+/* box */
+
+.box{
+  background:#111b21;
+  border:1px solid #22343c;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:14px;
+}
+
+/* inputs layout */
+
+.inputs{
+  display:flex;
+  gap:8px;
+  margin-bottom:8px;
+}
+
+/* input + textarea */
+
+input,textarea{
+  width:100%;
+  height:52px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #2a3f47;
+  background:#0b141a;
+  color:#e6edf3;
+  font-size:17px;
+  font-weight:700;
+  text-align:center;
+  box-sizing:border-box;
+}
+
+textarea{
+  height:58px;
+  resize:none;
+}
+
+/* result */
+
+.result{
+  word-break:break-word;
+  font-weight:800;
+  color:#22c55e;
+  margin-top:6px;
+}
+textarea[id*="kq"],
+#ghep_kq,
+#xien_result {
+  color:#22c55e;
+  font-weight:800;
+  letter-spacing:1px;
+}
+.count{
+  font-size:13px;
+  color:#8fa6ad;
+  text-align:center;
+}
+
+/* buttons */
+
+.actions{
+  display:none;
+  gap:8px;
+  margin-top:8px;
+}
+
+button{
+  flex:1;
+  height:48px;
+  border:none;
+  border-radius:12px;
+  font-weight:700;
+  font-size:15px;
+}
+
+.copy{
+  background:#1f8a99;
+  color:#fff;
+}
+
+.del{
+  background:#7a2e2e;
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="tab1" class="tab active">
+<div class="title">TẠO DÀN VIP</div>
+</div>
+<script>
+const MIN=2, MAX=2
+const ALL_NUMS = Array.from({length:100},(_,i)=>i.toString().padStart(2,'0'))
+const KEY='tool_lo1_fix'
+function save(){
+
+  if(isLoading) return
+
+  const d = {}
+
+  document.querySelectorAll('input,textarea').forEach(e=>{
+    if(e.id) d[e.id] = e.value
+  })
+
+  localStorage.setItem(KEY, JSON.stringify(d))
+}
+function load(){
+
+  isLoading = true
+
+  const d = JSON.parse(localStorage.getItem(KEY) || '{}')
+
+  Object.keys(d).forEach(id=>{
+    const e = document.getElementById(id)
+    if(!e) return
+
+    if(e.tagName === 'INPUT' || e.tagName === 'TEXTAREA'){
+      e.value = d[id]
+    }
+  })
+
+  setTimeout(()=>{
+    for(let i=1;i<=MAX;i++){
+      calc1(i)
+    }
+    isLoading = false
+  },50)
+}
+/* TOOL */
+const digits=id=>{
+  const el=document.getElementById(id)
+  if(!el) return []
+  return (el.value||'')
+    .replace(/\D/g,'')
+    .split('')
+    .map(Number)
+}
+const pairs = id=>{
+  const el = document.getElementById(id)
+  if(!el) return []
+
+  const nums = (el.value || "")
+    .replace(/\D/g,"")
+    .match(/\d{2}/g) || []
+
+  return [...new Set(nums)]
+}
+/* ================= TAB 1 – TẠO DÀN VIP ================= */
+function gen(ch,tg,dau,duoi){
+  return ALL_NUMS.filter(num=>{
+    const a = +num[0]
+    const b = +num[1]
+
+    if(ch.length && !(ch.includes(a)||ch.includes(b))) return false
+    if(tg.length && !tg.includes((a+b)%10)) return false
+    if(dau.length && !dau.includes(a)) return false
+    if(duoi.length && !duoi.includes(b)) return false
+
+    return true
+  })
+}
+
+function calc1(i){
+
+  const a = digits('a'+i)
+  const b = digits('b'+i)
+
+  const ch = digits('ch'+i)
+  const to = digits('to'+i)
+  const bo = pairs('bo'+i)
+
+  const da = digits('da'+i)
+  const du = digits('du'+i)
+
+  const add = pairs('add'+i)
+  const sub = pairs('sub'+i)
+
+  const locham = digits('locham'+i)
+  const lotong = digits('lotong'+i)
+  const lobo = pairs('lobo'+i)
+
+  const lodau = digits('lodau'+i)
+  const loduoi = digits('loduoi'+i)
+  const addch = digits('addch'+i)
+  const addto = digits('addto'+i)
+  const addbo = pairs('addbo'+i)
+
+const adddau = digits('adddau'+i)
+const addduoi = digits('addduoi'+i)
+const ghepcham = digits('ghepcham'+i)
+const ghepto   = digits('ghepto'+i)
+const gheptrong = digits('gheptrong'+i)
+const ghepngoai = digits('ghepngoai'+i)
+const hasFilter =
+  a.length || b.length ||
+  ch.length || to.length ||
+  bo.length ||
+  da.length || du.length ||
+  locham.length || lotong.length || lobo.length ||
+  lodau.length || loduoi.length
+
+  const addSet = add.length
+    ? [...new Set(add.map(x => String(x).padStart(2,'0')))]
+    : []
+
+  let base = [...ALL_NUMS]
+
+// ===== CHỌN BASE =====
+if(!hasFilter && !addSet.length && !sub.length){
+  base = []
+}
+else if(addSet.length && !hasFilter && !sub.length){
+  base = [...addSet]
+}
+  // ===== FILTER FUNCTION =====
+  const pass = (n)=>{
+    const x = +n[0]
+    const y = +n[1]
+
+    // ===== A / B =====
+
+// có cả A và B → ghép cặp
+if(a.length && b.length){
+  let ok = false
+
+  for(let A of a){
+    for(let B of b){
+      if(n === `${A}${B}` || n === `${B}${A}`){
+        ok = true
+        break
+      }
+    }
+    if(ok) break
+  }
+
+  if(!ok) return false
+}
+
+    if(ch.length && !(ch.includes(x)||ch.includes(y))) return false
+    if(to.length && !to.includes((x+y)%10)) return false
+
+    if(da.length && !da.includes(x)) return false
+    if(du.length && !du.includes(y)) return false
+
+    if(lodau.length && lodau.includes(x)) return false
+    if(loduoi.length && loduoi.includes(y)) return false
+
+    if(locham.length && (locham.includes(x)||locham.includes(y))) return false
+    if(lotong.length && lotong.includes((x+y)%10)) return false
+
+    return true
+  }
+
+  // ===== APPLY FILTER =====
+  let r = base.filter(pass)
+
+  // ===== BỘ =====
+  if(bo.length){
+    const bong = d => (d <= 4) ? String(+d + 5) : String(+d - 5)
+
+    r = r.filter(n=>{
+      return bo.some(b=>{
+        const a=b[0], c=b[1]
+        const set=[
+          a+c,c+a,
+          bong(a)+bong(c),bong(c)+bong(a),
+          a+bong(c),bong(c)+a,
+          c+bong(a),bong(a)+c
+        ]
+        return set.includes(n)
+      })
+    })
+  }
+
+  if(lobo.length){
+    const bong = d => (d <= 4) ? String(+d + 5) : String(+d - 5)
+
+    r = r.filter(n=>{
+      return !lobo.some(b=>{
+        const a=b[0], c=b[1]
+        const set=[
+          a+c,c+a,
+          bong(a)+bong(c),bong(c)+bong(a),
+          a+bong(c),bong(c)+a,
+          c+bong(a),bong(a)+c
+        ]
+        return set.includes(n)
+      })
+    })
+  }
+
+  // ===== ADD CHUẨN 2 CHẾ ĐỘ =====
+if(addSet.length){
+
+  if(!hasFilter){
+    // chỉ add
+    r = [...addSet]
+  }
+  else if(addSet.length <= 2){
+    // thêm số → KHÔNG filter
+    r = [...new Set([...r, ...addSet])]
+  } 
+  else {
+    // add là dàn → lọc giao
+    r = r.filter(x => addSet.includes(x))
+  }
+
+}
+// ===== THÊM FILTER (OR) =====
+if(addch.length || addto.length || addbo.length || adddau.length || addduoi.length){
+
+  const extra = ALL_NUMS.filter(n=>{
+    const x = +n[0]
+    const y = +n[1]
+
+    if(addch.length && (addch.includes(x) || addch.includes(y))) return true
+    if(addto.length && addto.includes((x+y)%10)) return true
+    if(adddau.length && adddau.includes(x)) return true
+    if(addduoi.length && addduoi.includes(y)) return true
+
+    if(addbo.length){
+      const bong = d => (d <= 4) ? String(+d + 5) : String(+d - 5)
+
+      for(let b of addbo){
+        const a=b[0], c=b[1]
+        const set=[
+          a+c,c+a,
+          bong(a)+bong(c),bong(c)+bong(a),
+          a+bong(c),bong(c)+a,
+          c+bong(a),bong(a)+c
+        ]
+        if(set.includes(n)) return true
+      }
+    }
+
+    return false
+  })
+
+  // gộp thêm (OR)
+  r = [...new Set([...r, ...extra])]
+}
+  // ===== BỎ CUỐI CÙNG =====
+if(sub.length){
+  const remove = new Set(sub)
+  r = r.filter(n => !remove.has(n))
+}
+
+r = [...new Set(r)]
+  .sort((a,b)=>parseInt(a)-parseInt(b))
+
+  document.getElementById('r'+i).innerText = r.join(',')
+  document.getElementById('c'+i).innerText = r.length ? r.length+' số' : ''
+  document.getElementById('act'+i).style.display = r.length ? 'flex' : 'none'
+
+  auto1()
+  save()
+}
+function resetRow(i){
+
+  const ids = [
+    'a','b','ch','to','bo',
+    'da','du','add','sub',
+    'locham','lotong','lobo',
+    'lodau','loduoi'
+  ]
+
+  ids.forEach(id=>{
+    const el = document.getElementById(id+i)
+    if(el) el.value = ''
+  })
+
+  // xoá kết quả
+  document.getElementById('r'+i).innerText = ''
+  document.getElementById('c'+i).innerText = ''
+
+  // ẩn nút copy/xoá
+  const act = document.getElementById('act'+i)
+  if(act) act.style.display = 'none'
+
+  // lưu lại trạng thái
+  save()
+}
+function out1(i,a){
+  document.getElementById('r'+i).innerText=a.join(',')
+  document.getElementById('c'+i).innerText=a.length?a.length+' số':''
+  document.querySelector('#b1_'+i+' .actions').style.display=a.length?'flex':'none'
+}
+
+function auto1(){
+
+  let visible = MIN
+
+  // tìm dàn đang hiển thị cuối cùng
+  for(let i=1;i<=MAX;i++){
+    const box = document.getElementById('b1_'+i)
+    if(box && box.style.display !== 'none'){
+      visible = i
+    }
+  }
+
+  // check dàn cuối có dữ liệu chưa
+  const lastBox = document.getElementById('b1_'+visible)
+
+  let hasData = false
+  if(lastBox){
+    hasData = [...lastBox.querySelectorAll('input')]
+      .some(inp => inp.value.trim() !== '')
+  }
+
+  // nếu dàn cuối có dữ liệu → bung thêm 1 dàn
+  if(hasData && visible < MAX){
+    visible += 1
+  }
+
+  // đảm bảo không ít hơn MIN
+  if(visible < MIN){
+    visible = MIN
+  }
+
+  // render
+  for(let i=1;i<=MAX;i++){
+    const box = document.getElementById('b1_'+i)
+    if(box){
+      box.style.display = (i <= visible) ? 'block' : 'none'
+    }
+  }
+}
+function render1(){
+  let h = '<div class="title">TẠO DÀN VIP</div>';
+
+  for(let i=1;i<=MAX;i++){
+    h+=`
+    <div class="box" id="b1_${i}" style="display:${i<=MIN?'block':'none'}">
+      <div class="title">DÀN ${i}</div>
+
+      <!-- HÀNG 1 -->
+      <div class="inputs">
+        <input id="a${i}" placeholder="Số A" oninput="calc1(${i})">
+        <input id="b${i}" placeholder="Số B" oninput="calc1(${i})">
+      </div>
+
+      <!-- HÀNG 2 -->
+      <div class="inputs">
+        <input id="ch${i}" placeholder="Chạm" oninput="calc1(${i})">
+        <input id="to${i}" placeholder="Tổng" oninput="calc1(${i})">
+        <input id="bo${i}" placeholder="Bộ" oninput="calc1(${i})">
+      </div>
+
+      <!-- HÀNG 3 -->
+      <div class="inputs">
+        <input id="da${i}" placeholder="Đầu" oninput="calc1(${i})">
+        <input id="du${i}" placeholder="Đuôi" oninput="calc1(${i})">
+      </div>
+
+      <!-- HÀNG 4 -->
+      <div class="inputs">
+        <input id="add${i}" placeholder="Thêm " oninput="calc1(${i})">
+        <input id="sub${i}" placeholder="Bỏ" oninput="calc1(${i})">
+      </div>
+
+      <!-- HÀNG 5 -->
+      <div class="inputs">
+        <input id="locham${i}" placeholder="Loại Chạm" oninput="calc1(${i})">
+        <input id="lotong${i}" placeholder="Loại Tổng" oninput="calc1(${i})">
+        <input id="lobo${i}" placeholder="Loại Bộ" oninput="calc1(${i})">
+      </div>
+
+      <!-- HÀNG 6 -->
+      <div class="inputs">
+        <input id="lodau${i}" placeholder="Loại Đầu" oninput="calc1(${i})">
+        <input id="loduoi${i}" placeholder="Loại Đuôi" oninput="calc1(${i})">
+      </div>
+<div class="inputs">
+  <input id="addch${i}" placeholder="Thêm Chạm" oninput="calc1(${i})">
+  <input id="addto${i}" placeholder="Thêm Tổng" oninput="calc1(${i})">
+  <input id="addbo${i}" placeholder="Thêm Bộ" oninput="calc1(${i})">
+</div>
+<div class="inputs">
+  <input id="adddau${i}" placeholder="Thêm Đầu" oninput="calc1(${i})">
+  <input id="addduoi${i}" placeholder="Thêm Đuôi" oninput="calc1(${i})">
+</div>
+      <div class="result" id="r${i}"></div>
+      <div class="count" id="c${i}"></div>
+<div class="actions" id="act${i}" style="display:none">
+  <button class="copy"
+    onclick="navigator.clipboard.writeText(document.getElementById('r'+${i}).innerText)">
+    COPY
+  </button>
+
+  <button class="del" onclick="resetRow(${i})">
+    XOÁ
+  </button>
+</div>
+</div>
+    `;
+  }
+
+  tab1.innerHTML = h;
+}
+/* INIT */
+render1();
+load();
+</script>
+</body>
+</html>
