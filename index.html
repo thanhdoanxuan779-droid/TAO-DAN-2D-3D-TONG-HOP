@@ -273,9 +273,15 @@ else if(addSet.length && !hasFilter && !sub.length){
   base = [...addSet]
 }
   // ===== FILTER FUNCTION =====
-  const pass = (n)=>{
-    const x = +n[0]
-    const y = +n[1]
+const pass = (n)=>{
+
+  // Chỉ nhập A hoặc chỉ nhập B thì không sinh dàn
+  if((a.length && !b.length) || (!a.length && b.length)){
+    return false
+  }
+
+  const x = +n[0]
+  const y = +n[1]
 
     // ===== A / B =====
 
