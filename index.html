@@ -560,8 +560,86 @@ function render1(){
 </div>
     `;
   }
+h+=`
+<div class="box">
 
+<div class="title">GHÉP 3D / 4D</div>
+
+<div class="inputs">
+<input id="dan2d" placeholder="Dàn 2D" oninput="calc34()">
+</div>
+
+<div class="inputs">
+<input id="dau3" placeholder="3D" oninput="calc34()">
+<input id="dau4" placeholder="4D" oninput="calc34()">
+</div>
+
+<div class="title">KẾT QUẢ</div>
+
+<textarea id="kq34" readonly></textarea>
+
+<div class="count" id="dem34"></div>
+
+<div class="actions" id="act34" style="display:none">
+<button class="copy"
+onclick="navigator.clipboard.writeText(document.getElementById('kq34').value)">
+COPY
+</button>
+
+<button class="del"
+onclick="clear34()">
+XOÁ
+</button>
+
+</div>
+
+</div>
+`;
   tab1.innerHTML = h;
+}
+function calc34(){
+
+const dan=(document.getElementById("dan2d").value.match(/\d{2}/g)||[]);
+const d3=document.getElementById("dau3").value.replace(/\D/g,"").split("").filter(Boolean);
+const d4=document.getElementById("dau4").value.replace(/\D/g,"").split("").filter(Boolean);
+
+let kq=[];
+
+d3.forEach(a=>{
+    dan.forEach(b=>{
+        kq.push(a+b);
+    });
+});
+
+d4.forEach(a=>{
+    d3.forEach(b=>{
+        dan.forEach(c=>{
+            kq.push(a+b+c);
+        });
+    });
+});
+
+kq=[...new Set(kq)];
+
+document.getElementById("kq34").value=kq.join(",");
+document.getElementById("dem34").innerText=kq.length?kq.length+" số":"";
+document.getElementById("act34").style.display=kq.length?"flex":"none";
+
+save();
+
+}
+
+function clear34(){
+
+document.getElementById("dan2d").value="";
+document.getElementById("dau3").value="";
+document.getElementById("dau4").value="";
+document.getElementById("kq34").value="";
+document.getElementById("dem34").innerText="";
+document.getElementById("act34").style.display="none";
+
+save();
+
 }
 /* INIT */
 render1();
