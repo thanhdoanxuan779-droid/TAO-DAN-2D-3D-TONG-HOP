@@ -22,6 +22,8 @@ body{
   background:#0b141a;
   color:#e6edf3;
   font-family:sans-serif;
+  padding-top:48px;
+  padding-bottom:18px;
 }
 
 /* tabs */
@@ -51,6 +53,112 @@ body{
 
 .tab{display:none}
 .tab.active{display:block}
+
+.app-tabs{
+  display:flex;
+  gap:8px;
+  margin:0 0 12px;
+  padding:4px;
+  border:1px solid #22343c;
+  border-radius:14px;
+  background:#0f1a20;
+}
+
+.app-tab-btn{
+  flex:1;
+  height:42px;
+  border:1px solid transparent;
+  border-radius:10px;
+  background:transparent;
+  color:#8fa6ad;
+  font-size:13px;
+}
+
+.app-tab-btn.active{
+  color:#fff;
+  background:#144d57;
+  border-color:#287482;
+  box-shadow:0 4px 12px rgba(20,77,87,.28);
+}
+
+.g-tab-title{
+  color:#7dd3fc;
+  font-size:16px;
+  font-weight:800;
+  text-align:center;
+  margin:8px 0 12px;
+}
+
+.g-dan-actions{display:flex;gap:7px;margin-top:7px}
+.g-dan-actions button{height:38px;min-height:38px;padding:6px 8px;border-radius:10px;font-size:12px}
+.g-result-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.g-result-actions button{display:flex;align-items:center;justify-content:center;text-align:center;height:40px;min-height:40px;padding:6px 8px;border-radius:10px;font-size:12px}
+
+.gx-section-title{color:#7dd3fc;font-size:16px;font-weight:800;text-align:center;margin:8px 0 12px}
+.gx-result{min-height:70px;white-space:pre-wrap;text-align:center;font-weight:800;color:#22c55e;line-height:1.6;word-break:break-word}
+.gx-result-actions{display:flex;gap:7px;margin-top:7px}
+.gx-result-actions button{height:38px;min-height:38px;padding:6px 8px;border-radius:10px;font-size:12px}
+.gx-xien-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:8px}
+.gx-xien-buttons button{height:36px;min-height:36px;padding:4px;font-size:11px;border-radius:9px;background:#1b4650;color:#d8f6ff}
+.gx-xien-buttons button.active{background:#287482;color:#fff;border-color:#7dd3fc}
+.gx-action{height:40px;min-height:40px;font-size:13px}
+
+.theme-menu-btn{
+  position:fixed;
+  z-index:10001;
+  top:max(8px,env(safe-area-inset-top));
+  right:8px;
+  width:32px;
+  height:32px;
+  min-height:32px;
+  padding:0;
+  flex:none;
+  border:1px solid #2a4650;
+  border-radius:9px;
+  background:#14262e;
+  color:#d7f7ff;
+  box-shadow:0 8px 20px rgba(0,0,0,.28);
+}
+.theme-menu-btn span,.theme-menu-btn span:before,.theme-menu-btn span:after{
+  display:block;width:15px;height:2px;margin:auto;border-radius:2px;background:currentColor;content:''
+}
+.theme-menu-btn span:before{transform:translateY(-6px)}
+.theme-menu-btn span:after{transform:translateY(4px)}
+.theme-overlay{position:fixed;inset:0;z-index:10000;display:none;background:rgba(2,8,12,.76);backdrop-filter:blur(12px);padding:18px 14px;overflow:auto}
+.theme-overlay.open{display:block}
+.theme-sheet{width:min(680px,100%);min-height:100%;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 0 calc(20px + env(safe-area-inset-bottom))}
+.theme-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;color:#fff}
+.theme-head strong{font-size:20px;letter-spacing:.5px}
+.theme-close{width:40px;height:40px;min-height:40px;flex:none;padding:0;background:#263b43;color:#fff;border-radius:12px}
+.theme-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.theme-choice{display:flex;align-items:center;gap:10px;min-height:64px;padding:10px;border:1px solid #34505a;border-radius:15px;background:#12232a;color:#e8f8fb;text-align:left}
+.theme-choice.active{border-color:#7dd3fc;box-shadow:0 0 0 2px #7dd3fc55}
+.theme-swatch{width:38px;height:38px;flex:none;border-radius:11px;border:2px solid #ffffff55;box-shadow:inset 0 0 0 5px #00000012}
+.theme-choice b{display:block;font-size:13px}.theme-choice small{display:block;margin-top:3px;color:#9bb4bd;font-size:10px}
+
+body.theme-midnight{--t-bg:#081015;--t-panel:#111b21;--t-input:#0b141a;--t-border:#2a3f47;--t-text:#e6edf3;--t-muted:#8fa6ad;--t-accent:#22c5d6}
+body.theme-cyan{--t-bg:#071a20;--t-panel:#102a32;--t-input:#0b2028;--t-border:#23606a;--t-text:#e0fbff;--t-muted:#91cbd1;--t-accent:#35d5c5}
+body.theme-graphite{--t-bg:#111216;--t-panel:#202228;--t-input:#17181c;--t-border:#41444d;--t-text:#f1f1f1;--t-muted:#a7a9b2;--t-accent:#d2d6df}
+body.theme-purple{--t-bg:#130d20;--t-panel:#24173a;--t-input:#1a102c;--t-border:#63458b;--t-text:#f5eaff;--t-muted:#c0a9d8;--t-accent:#c084fc}
+body.theme-forest{--t-bg:#08170f;--t-panel:#10271b;--t-input:#0b1e14;--t-border:#2e6544;--t-text:#e5ffe9;--t-muted:#9bc8a6;--t-accent:#5ee48a}
+body.theme-snow{--t-bg:#f3f7fc;--t-panel:#ffffff;--t-input:#f7f9fd;--t-border:#dbe3ef;--t-text:#1d2b45;--t-muted:#718098;--t-accent:#4776f1}
+body.theme-sky{--t-bg:#eaf5ff;--t-panel:#ffffff;--t-input:#f5fbff;--t-border:#c9e1f5;--t-text:#173958;--t-muted:#5c7b97;--t-accent:#208be0}
+body.theme-mint{--t-bg:#effbf7;--t-panel:#ffffff;--t-input:#f5fffb;--t-border:#c9eee0;--t-text:#183f39;--t-muted:#63877f;--t-accent:#159d7c}
+body.theme-lavender{--t-bg:#f6f1ff;--t-panel:#ffffff;--t-input:#fbf9ff;--t-border:#e0d4f5;--t-text:#382957;--t-muted:#796d91;--t-accent:#7657d8}
+body.theme-sand{--t-bg:#fff8ed;--t-panel:#ffffff;--t-input:#fffdf8;--t-border:#f0dcc0;--t-text:#503a25;--t-muted:#987b5b;--t-accent:#c47b21}
+body[class*="theme-"]{background:var(--t-bg);color:var(--t-text)}
+body[class*="theme-"] .box{background:var(--t-panel);border-color:var(--t-border);color:var(--t-text)}
+body[class*="theme-"] .title,body[class*="theme-"] .g-tab-title{color:var(--t-text)}
+body[class*="theme-"] input,body[class*="theme-"] textarea{background:var(--t-input);border-color:var(--t-border);color:var(--t-text)}
+body[class*="theme-"] input:focus,body[class*="theme-"] textarea:focus{border-color:var(--t-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--t-accent) 20%,transparent)}
+body[class*="theme-"] .count{color:var(--t-muted)}
+body[class*="theme-"] .app-tabs{background:var(--t-panel);border-color:var(--t-border)}
+body[class*="theme-"] .app-tab-btn{color:var(--t-muted)}
+body[class*="theme-"] .app-tab-btn.active{background:var(--t-accent);border-color:var(--t-accent);color:#fff}
+body[class*="theme-"] .theme-menu-btn{background:var(--t-panel);border-color:var(--t-border);color:var(--t-text)}
+body[class*="theme-"] .num-pad{background:var(--t-panel);border-color:var(--t-border)}
+body[class*="theme-"] .num-pad button{background:var(--t-input);border-color:var(--t-border);color:var(--t-text)}
+body[class*="theme-"] .num-pad button:active{background:var(--t-accent)}
 
 /* box */
 
@@ -84,6 +192,105 @@ input,textarea{
   font-weight:700;
   text-align:center;
   box-sizing:border-box;
+}
+
+input{
+  -webkit-appearance:none;
+  appearance:none;
+  caret-color:#7dd3fc;
+  transition:border-color .15s ease,box-shadow .15s ease,background .15s ease;
+}
+
+input:focus,textarea:focus{
+  outline:none;
+  border-color:#22c5d6;
+  background:#0d1c23;
+  box-shadow:0 0 0 3px rgba(34,197,214,.16);
+}
+
+input::placeholder,textarea::placeholder{
+  color:#78919a;
+  opacity:1;
+}
+
+.num-pad{
+  position:fixed;
+  z-index:9999;
+  left:50%;
+  right:auto;
+  bottom:12px;
+  width:min(calc(100vw - 20px),420px);
+  transform:translateX(-50%);
+  display:none;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  padding:12px;
+  background:linear-gradient(145deg,#14252d,#0d171c);
+  border:1px solid rgba(125,211,252,.24);
+  border-radius:22px;
+  box-shadow:0 16px 40px rgba(0,0,0,.62),0 0 24px rgba(34,197,214,.08);
+  backdrop-filter:blur(16px);
+}
+
+.num-pad.open{display:grid}
+
+.num-pad::before{
+  content:'';
+  grid-column:1/-1;
+  width:42px;
+  height:4px;
+  margin:0 auto 2px;
+  border-radius:99px;
+  background:#46646d;
+}
+
+.pad-title{
+  grid-column:1/-1;
+  padding:0 2px 2px;
+  color:#8faeb7;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  text-align:center;
+}
+
+.pad-paste{
+  grid-column:1/-1;
+  height:38px !important;
+  min-height:38px !important;
+  color:#9ed9e6 !important;
+  font-size:15px !important;
+}
+
+.num-pad button{
+  flex:none;
+  height:54px;
+  border:1px solid rgba(125,211,252,.13);
+  border-radius:15px;
+  background:linear-gradient(145deg,#1d3943,#142a32);
+  color:#e6edf3;
+  font-size:22px;
+  font-weight:800;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 3px 7px rgba(0,0,0,.18);
+  -webkit-tap-highlight-color:transparent;
+}
+
+.num-pad button:active{
+  background:#1f8a99;
+  transform:scale(.97);
+}
+
+.num-pad .pad-action{
+  color:#9ed9e6;
+  font-size:18px;
+  background:linear-gradient(145deg,#193842,#122a31);
+}
+
+.num-pad .pad-done{
+  background:linear-gradient(145deg,#193842,#122a31);
+  color:#9ed9e6;
+  border-color:rgba(125,211,252,.13);
+  font-size:16px;
 }
 
 textarea{
@@ -145,34 +352,77 @@ button{
 
 <div class="container">
 
+<div class="app-tabs">
+  <button type="button" class="app-tab-btn active" data-tab="tab1" onclick="switchAppTab('tab1',this)">TẠO DÀN</button>
+  <button type="button" class="app-tab-btn" data-tab="tab2" onclick="switchAppTab('tab2',this)">GHÉP TRÙNG</button>
+  <button type="button" class="app-tab-btn" data-tab="tab3" title="GHÉP 3D-4D + XIÊN" onclick="switchAppTab('tab3',this)">GHÉP 3D</button>
+</div>
+
 <div id="tab1" class="tab active">
 <div class="title">TẠO DÀN VIP</div>
 </div>
+<div id="tab2" class="tab"></div>
+<div id="tab3" class="tab"></div>
 <script>
-const MIN=2, MAX=2
+const MIN=1, MAX=1
 const ALL_NUMS = Array.from({length:100},(_,i)=>i.toString().padStart(2,'0'))
 const KEY='tool_lo1_fix'
+let isLoading = false
+const inputOrder = {}
+const lastInputValues = {}
+
+function rememberInput(i){
+  const el = document.activeElement
+  if(!el || !el.id || !el.closest('#b1_'+i)) return
+  if(lastInputValues[el.id] === el.value) return
+
+  lastInputValues[el.id] = el.value
+  inputOrder[i] = (inputOrder[i] || []).filter(id => id !== el.id)
+
+  if(el.value.trim() !== ''){
+    inputOrder[i].push(el.id)
+  }
+}
+
 function save(){
 
   if(isLoading) return
 
   const d = {}
 
-  document.querySelectorAll('input,textarea').forEach(e=>{
+  document.querySelectorAll('#tab1 input,#tab1 textarea').forEach(e=>{
     if(e.id) d[e.id] = e.value
   })
 
-  localStorage.setItem(KEY, JSON.stringify(d))
+  try{
+    localStorage.setItem(KEY, JSON.stringify(d))
+  }catch(e){
+    console.warn('Không thể lưu dữ liệu:', e)
+  }
 }
 function load(){
 
   isLoading = true
 
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}')
+  let d = {}
+
+  try{
+    d = JSON.parse(localStorage.getItem(KEY) || '{}')
+  }catch(e){
+    console.warn('Dữ liệu đã lưu bị lỗi, bỏ qua dữ liệu cũ:', e)
+    try{
+      localStorage.removeItem(KEY)
+    }catch(removeError){
+      console.warn('Không thể xoá dữ liệu lỗi:', removeError)
+    }
+  }
+
+  if(!d || typeof d !== 'object' || Array.isArray(d)) d = {}
 
   Object.keys(d).forEach(id=>{
     const e = document.getElementById(id)
     if(!e) return
+    if(!e.closest('#tab1')) return
 
     if(e.tagName === 'INPUT' || e.tagName === 'TEXTAREA'){
       e.value = d[id]
@@ -184,8 +434,19 @@ function load(){
       calc1(i)
     }
     isLoading = false
-calc34()
   },50)
+}
+
+function copyText(text){
+  if(!navigator.clipboard || !window.isSecureContext){
+    alert('Không thể copy trong môi trường hiện tại. Hãy mở bằng HTTPS hoặc localhost.')
+    return
+  }
+
+  navigator.clipboard.writeText(text).catch(e=>{
+    console.warn('Không thể copy:', e)
+    alert('Không thể copy. Hãy kiểm tra quyền clipboard của trình duyệt.')
+  })
 }
 /* TOOL */
 const digits=id=>{
@@ -223,6 +484,8 @@ function gen(ch,tg,dau,duoi){
 
 function calc1(i){
 
+  rememberInput(i)
+
   const a = digits('a'+i)
   const b = digits('b'+i)
 
@@ -252,27 +515,66 @@ const ghepcham = digits('ghepcham'+i)
 const ghepto   = digits('ghepto'+i)
 const gheptrong = digits('gheptrong'+i)
 const ghepngoai = digits('ghepngoai'+i)
-const hasFilter =
+  const hasMainFilter =
   a.length || b.length ||
-  ch.length || to.length ||
-  bo.length ||
-  da.length || du.length ||
+  ch.length || to.length || bo.length ||
+  da.length || du.length
+
+  const hasLoFilter =
   locham.length || lotong.length || lobo.length ||
   lodau.length || loduoi.length
+
+  const hasAddFilter =
+  addch.length || addto.length || addbo.length ||
+  adddau.length || addduoi.length
+
+  const addIds = ['add'+i,'addch'+i,'addto'+i,'addbo'+i,'adddau'+i,'addduoi'+i]
+  const loIds = ['locham'+i,'lotong'+i,'lobo'+i,'lodau'+i,'loduoi'+i]
+  const order = inputOrder[i] || []
+  const relevant = order.filter(id => addIds.includes(id) || loIds.includes(id))
+  const firstAction = relevant[0] || ''
+  const lastAction = relevant[relevant.length-1] || ''
+  const addWasFirst = addIds.includes(firstAction)
+  const loWasLast = loIds.includes(lastAction)
 
   const addSet = add.length
     ? [...new Set(add.map(x => String(x).padStart(2,'0')))]
     : []
 
-  let base = [...ALL_NUMS]
+  // Nhập gì ở các ô LOẠI thì loại đúng điều kiện đó khỏi toàn bộ dàn.
+  const isExcluded = n => {
+    const x = +n[0]
+    const y = +n[1]
 
-// ===== CHỌN BASE =====
-if(!hasFilter && !addSet.length && !sub.length){
-  base = []
-}
-else if(addSet.length && !hasFilter && !sub.length){
-  base = [...addSet]
-}
+    if(lodau.length && lodau.includes(x)) return true
+    if(loduoi.length && loduoi.includes(y)) return true
+    if(locham.length && (locham.includes(x)||locham.includes(y))) return true
+    if(lotong.length && lotong.includes((x+y)%10)) return true
+
+    if(lobo.length){
+      const bong = d => (d <= 4) ? String(+d + 5) : String(+d - 5)
+      for(let pair of lobo){
+        const p=pair[0], q=pair[1]
+        const set=[
+          p+q,q+p,
+          bong(p)+bong(q),bong(q)+bong(p),
+          p+bong(q),bong(q)+p,
+          q+bong(p),bong(p)+q
+        ]
+        if(set.includes(n)) return true
+      }
+    }
+
+    return false
+  }
+
+  let base = []
+
+  // Bộ lọc chính và Loại dùng dàn nền 100 số.
+  // Các ô Thêm chỉ hợp thêm, không làm thay thế hoặc lọc giao dàn nền.
+  if(hasMainFilter || (!addWasFirst && (hasLoFilter || (!hasAddFilter && !addSet.length && sub.length)))){
+    base = [...ALL_NUMS]
+  }
   // ===== FILTER FUNCTION =====
 const pass = (n)=>{
 
@@ -309,12 +611,6 @@ if(a.length && b.length){
     if(da.length && !da.includes(x)) return false
     if(du.length && !du.includes(y)) return false
 
-    if(lodau.length && lodau.includes(x)) return false
-    if(loduoi.length && loduoi.includes(y)) return false
-
-    if(locham.length && (locham.includes(x)||locham.includes(y))) return false
-    if(lotong.length && lotong.includes((x+y)%10)) return false
-
     return true
   }
 
@@ -339,62 +635,44 @@ if(a.length && b.length){
     })
   }
 
-  if(lobo.length){
-    const bong = d => (d <= 4) ? String(+d + 5) : String(+d - 5)
+  // Loại trước dàn nền; số được Thêm sau đó không bị Loại chặn lại.
+  r = r.filter(n => !isExcluded(n))
 
-    r = r.filter(n=>{
-      return !lobo.some(b=>{
-        const a=b[0], c=b[1]
-        const set=[
-          a+c,c+a,
-          bong(a)+bong(c),bong(c)+bong(a),
-          a+bong(c),bong(c)+a,
-          c+bong(a),bong(a)+c
-        ]
-        return set.includes(n)
-      })
-    })
+  // ===== THÊM: LUÔN HỢP VÀO DÀN HIỆN CÓ =====
+  const mergeAdded = values => {
+    r = [...new Set([...r, ...values])]
   }
 
-  // ===== ADD CHUẨN 2 CHẾ ĐỘ =====
 if(addSet.length){
-
-  if(!hasFilter){
-    // chỉ add
-    r = [...addSet]
-  }
-  else if(addSet.length <= 2){
-    // thêm số → KHÔNG filter
-    r = [...new Set([...r, ...addSet])]
-  } 
-  else {
-    // add là dàn → lọc giao
-    r = r.filter(x => addSet.includes(x))
-  }
-
+  // Số nhập ở ô Thêm qua bộ lọc chính, không qua Loại.
+  mergeAdded(addSet.filter(n => pass(n)))
 }
-// ===== THÊM FILTER (OR) =====
+
+// ===== THÊM THEO ĐIỀU KIỆN: HỢP VÀO DÀN HIỆN CÓ =====
 if(addch.length || addto.length || addbo.length || adddau.length || addduoi.length){
 
   const extra = ALL_NUMS.filter(n=>{
     const x = +n[0]
     const y = +n[1]
 
-    if(addch.length && (addch.includes(x) || addch.includes(y))) return true
+    // Số được thêm chỉ giao với bộ lọc chính, không giao với Loại.
+    if(!pass(n)) return false
+
+    // Mỗi ô THÊM tạo một tập riêng; các tập được hợp vào dàn hiện có.
+    if(addch.length && (addch.includes(x)||addch.includes(y))) return true
     if(addto.length && addto.includes((x+y)%10)) return true
     if(adddau.length && adddau.includes(x)) return true
     if(addduoi.length && addduoi.includes(y)) return true
 
     if(addbo.length){
       const bong = d => (d <= 4) ? String(+d + 5) : String(+d - 5)
-
-      for(let b of addbo){
-        const a=b[0], c=b[1]
+      for(let pair of addbo){
+        const p=pair[0], q=pair[1]
         const set=[
-          a+c,c+a,
-          bong(a)+bong(c),bong(c)+bong(a),
-          a+bong(c),bong(c)+a,
-          c+bong(a),bong(a)+c
+          p+q,q+p,
+          bong(p)+bong(q),bong(q)+bong(p),
+          p+bong(q),bong(q)+p,
+          q+bong(p),bong(p)+q
         ]
         if(set.includes(n)) return true
       }
@@ -403,9 +681,15 @@ if(addch.length || addto.length || addbo.length || adddau.length || addduoi.leng
     return false
   })
 
-  // gộp thêm (OR)
-  r = [...new Set([...r, ...extra])]
+  mergeAdded(extra)
 }
+
+// Nếu thao tác Loại là thao tác sau cùng, nó loại trực tiếp trên dàn vừa có.
+// Nếu Thêm nhập sau Loại, tập Thêm được cộng lại đúng điều kiện của nó.
+if(loWasLast || (!relevant.length && hasLoFilter)){
+  r = r.filter(n => !isExcluded(n))
+}
+
   // ===== BỎ CUỐI CÙNG =====
 if(sub.length){
   const remove = new Set(sub)
@@ -428,7 +712,8 @@ function resetRow(i){
     'a','b','ch','to','bo',
     'da','du','add','sub',
     'locham','lotong','lobo',
-    'lodau','loduoi'
+    'lodau','loduoi',
+    'addch','addto','addbo','adddau','addduoi'
   ]
 
   ids.forEach(id=>{
@@ -550,7 +835,7 @@ function render1(){
       <div class="count" id="c${i}"></div>
 <div class="actions" id="act${i}" style="display:none">
   <button class="copy"
-    onclick="navigator.clipboard.writeText(document.getElementById('r'+${i}).innerText)">
+    onclick="copyText(document.getElementById('r'+${i}).innerText)">
     COPY
   </button>
 
@@ -561,90 +846,497 @@ function render1(){
 </div>
     `;
   }
-h+=`
-<div class="box">
-
-<div class="title">GHÉP 3D / 4D</div>
-
-<div class="inputs">
-<input id="dan2d" placeholder="Dàn 2D" oninput="calc34()">
-</div>
-
-<div class="inputs">
-<input id="dau3" placeholder="3D" oninput="calc34()">
-<input id="dau4" placeholder="4D" oninput="calc34()">
-</div>
-
-<div class="title">KẾT QUẢ</div>
-
-<textarea id="kq34" readonly></textarea>
-
-<div class="count" id="dem34"></div>
-
-<div class="actions" id="act34" style="display:none">
-<button class="copy"
-onclick="navigator.clipboard.writeText(document.getElementById('kq34').value)">
-COPY
-</button>
-
-<button class="del"
-onclick="clear34()">
-XOÁ
-</button>
-
-</div>
-
-</div>
-`;
   tab1.innerHTML = h;
 }
-function calc34(){
+const G_MAX = 40
+const G_KEY = 'tool_lo1_ghep_trung'
+let gLoading = false
+let gMode = {type:'intersection'}
 
-const dan=(document.getElementById("dan2d").value.match(/\d{2}/g)||[]);
-const d3=document.getElementById("dau3").value.replace(/\D/g,"").split("").filter(Boolean);
-const d4=document.getElementById("dau4").value.replace(/\D/g,"").split("").filter(Boolean);
-
-let kq=[];
-
-d3.forEach(a=>{
-    dan.forEach(b=>{
-        kq.push(a+b);
-    });
-});
-
-d4.forEach(a=>{
-    d3.forEach(b=>{
-        dan.forEach(c=>{
-            kq.push(a+b+c);
-        });
-    });
-});
-
-kq=[...new Set(kq)];
-
-document.getElementById("kq34").value=kq.join(",");
-document.getElementById("dem34").innerText=kq.length?kq.length+" số":"";
-document.getElementById("act34").style.display=kq.length?"flex":"none";
-
-save();
-
+function switchAppTab(id, button){
+  document.querySelectorAll('.tab').forEach(tab=>tab.classList.toggle('active',tab.id===id))
+  document.querySelectorAll('.app-tab-btn').forEach(btn=>btn.classList.toggle('active',btn===button))
+  if(id === 'tab2') autoG()
 }
 
-function clear34(){
+function renderGTab(){
+  const host = document.getElementById('tab2')
+  let h = '<div class="g-tab-title">GHÉP TRÙNG 2D / 3D / 4D</div>'
 
-document.getElementById("dan2d").value="";
-document.getElementById("dau3").value="";
-document.getElementById("dau4").value="";
-document.getElementById("kq34").value="";
-document.getElementById("dem34").innerText="";
-document.getElementById("act34").style.display="none";
+  for(let i=1;i<=G_MAX;i++){
+    h += `
+      <div class="box" id="gbox${i}" style="display:${i===1?'block':'none'}">
+        <div class="title">DÀN SỐ ${i}</div>
+        <textarea id="g${i}" oninput="onGInput(this)"></textarea>
+        <div class="g-dan-actions">
+          <button class="copy" type="button" onclick="pasteG(${i})">DÁN SỐ</button>
+          <button class="del" type="button" onclick="clearDan(${i})">XOÁ DÀN</button>
+        </div>
+      </div>`
+  }
 
-save();
+  h += `
+    <div class="box">
+      <div class="title">KẾT QUẢ</div>
+      <div class="result" id="gr"></div>
+      <div class="count" id="gc"></div>
+      <div class="count" id="gnotice"></div>
+      <div class="g-result-actions" id="gact" style="display:none">
+        <button class="copy" type="button" onclick="copyGResult()">COPY</button>
+        <button class="del" type="button" onclick="clearG()">XOÁ TẤT CẢ</button>
+      </div>
+    </div>`
 
+  host.innerHTML = h
+}
+
+function parseG(text){
+  const output=[]
+  const runs=String(text||'').match(/\d+/g)||[]
+  for(const run of runs){
+    if(run.length>=2 && run.length<=4) output.push(run)
+    else if(run.length>4 && run.length%2===0){
+      for(let i=0;i<run.length;i+=2) output.push(run.slice(i,i+2))
+    }
+  }
+  return [...new Set(output)]
+}
+
+function getFilledG(){
+  const filled=[]
+  for(let i=1;i<=G_MAX;i++){
+    const field=document.getElementById('g'+i)
+    if(!field) continue
+    const nums=parseG(field.value)
+    if(nums.length) filled.push({index:i,nums})
+  }
+  return filled
+}
+
+function autoResizeG(field){
+  field.style.height='58px'
+  if(field.value.trim()) field.style.height=Math.min(140,Math.max(58,field.scrollHeight))+'px'
+}
+
+function autoG(){
+  if(!document.getElementById('tab2')) return
+  let last=0
+  for(let i=1;i<=G_MAX;i++){
+    const field=document.getElementById('g'+i)
+    if(field && field.value.trim()) last=i
+  }
+  const visibleThrough=Math.min(G_MAX,Math.max(1,last+1))
+  for(let i=1;i<=G_MAX;i++){
+    const box=document.getElementById('gbox'+i)
+    if(box) box.style.display=i<=visibleThrough?'block':'none'
+  }
+}
+
+function onGInput(field){
+  autoResizeG(field)
+  gMode={type:'intersection'}
+  calcG()
+}
+
+function showGResult(numbers,mode){
+  const sorted=[...new Set(numbers)].sort((a,b)=>Number(a)-Number(b))
+  document.getElementById('gr').innerText=sorted.join(',')
+  document.getElementById('gc').innerText=sorted.length?sorted.length+' số':''
+  document.getElementById('gact').style.display=sorted.length?'grid':'none'
+  gMode=mode
+  generateGDiff()
+  saveG()
+}
+
+function calcG(){
+  const filled=getFilledG(); autoG()
+  if(filled.length<2){
+    document.getElementById('gr').innerText=''
+    document.getElementById('gc').innerText=''
+    document.getElementById('gact').style.display='none'
+    generateGDiff(); saveG(); return
+  }
+  let common=new Set(filled[0].nums)
+  for(const dan of filled.slice(1)){
+    const next=new Set(dan.nums)
+    common=new Set([...common].filter(number=>next.has(number)))
+  }
+  showGResult([...common],{type:'intersection'})
+}
+
+function calcUnion(){
+  const all=new Set(getFilledG().flatMap(dan=>dan.nums))
+  showGResult([...all],{type:'union'})
+}
+
+function removeAllDuplicate(){
+  const occurrences=new Map()
+  for(const dan of getFilledG()) for(const number of dan.nums){
+    occurrences.set(number,(occurrences.get(number)||0)+1)
+  }
+  showGResult([...occurrences].filter(([,count])=>count===1).map(([number])=>number),{type:'unique'})
+}
+
+function generateGDiff(){
+  const host=document.getElementById('gdiff'); if(!host) return
+  host.replaceChildren()
+  const filled=getFilledG(); if(filled.length<2) return
+  const [a,b]=filled
+  for(const [left,right] of [[a,b],[b,a]]){
+    const button=document.createElement('button')
+    button.type='button'; button.textContent=`Dàn ${left.index} loại dàn ${right.index}`
+    button.onclick=()=>diffG(left.index,right.index)
+    host.appendChild(button)
+  }
+}
+
+function diffG(a,b){
+  const first=parseG(document.getElementById('g'+a).value)
+  const second=new Set(parseG(document.getElementById('g'+b).value))
+  showGResult(first.filter(number=>!second.has(number)),{type:'difference',a,b})
+}
+
+async function pasteG(index){
+  try{
+    if(!navigator.clipboard || !navigator.clipboard.readText) throw new Error('clipboard')
+    document.getElementById('g'+index).value=parseG(await navigator.clipboard.readText()).join(',')
+    onGInput(document.getElementById('g'+index))
+  }catch(e){
+    document.getElementById('gnotice').innerText='Không đọc được clipboard. Hãy dán trực tiếp vào ô.'
+  }
+}
+
+function copyGResult(){
+  const text=document.getElementById('gr').innerText
+  if(text) copyText(text)
+}
+
+function clearDan(index){
+  const field=document.getElementById('g'+index)
+  field.value=''; autoResizeG(field); calcG()
+}
+
+function clearG(){
+  for(let i=1;i<=G_MAX;i++){
+    const field=document.getElementById('g'+i)
+    if(field){field.value='';autoResizeG(field)}
+  }
+  document.getElementById('gr').innerText=''
+  document.getElementById('gc').innerText=''
+  document.getElementById('gact').style.display='none'
+  autoG(); saveG()
+}
+
+function saveG(){
+  if(gLoading) return
+  const state={inputs:{},mode:gMode}
+  for(let i=1;i<=G_MAX;i++){
+    const field=document.getElementById('g'+i)
+    if(field) state.inputs['g'+i]=field.value
+  }
+  try{localStorage.setItem(G_KEY,JSON.stringify(state))}catch(e){console.warn('Không thể lưu tab Ghép Trùng:',e)}
+}
+
+function loadG(){
+  gLoading=true
+  let state=null
+  try{state=JSON.parse(localStorage.getItem(G_KEY)||'null')}catch(e){state=null}
+  const inputs=state&&state.inputs?state.inputs:state
+  if(inputs&&typeof inputs==='object'){
+    for(let i=1;i<=G_MAX;i++){
+      const field=document.getElementById('g'+i)
+      if(field&&typeof inputs['g'+i]==='string'){field.value=inputs['g'+i];autoResizeG(field)}
+    }
+  }
+  autoG(); gLoading=false
+  const mode=state&&state.mode&&typeof state.mode.type==='string'?state.mode:{type:'intersection'}
+  if(mode.type==='union') calcUnion()
+  else if(mode.type==='unique') removeAllDuplicate()
+  else if(mode.type==='difference'&&Number.isInteger(mode.a)&&Number.isInteger(mode.b)) diffG(mode.a,mode.b)
+  else calcG()
+}
+
+const GX_KEY='tool_lo1_ghep_3d4d_xien'
+let gxXienSize=2
+
+function renderGXTab(){
+  document.getElementById('tab3').innerHTML=`
+    <div class="box">
+      <div class="title">GHÉP CÀNG 3D / 4D</div>
+      <div class="inputs"><textarea id="gxDan" oninput="calcGX()"></textarea></div>
+      <div class="inputs">
+        <input id="gxCang4" placeholder="Càng 4D" oninput="calcGX()">
+        <input id="gxCang3" placeholder="Càng 3D" oninput="calcGX()">
+      </div>
+      <div class="result gx-result" id="gxResult"></div>
+      <div class="count" id="gxCount"></div>
+      <div class="gx-result-actions">
+        <button class="copy" type="button" onclick="copyGXResult('gxResult')">COPY</button>
+        <button class="del" type="button" onclick="clearGXPart('main')">XOÁ</button>
+      </div>
+    </div>
+    <div class="box">
+      <div class="title">XIÊN QUAY</div>
+      <div class="inputs"><textarea id="gxXienDan" placeholder="Nhập dàn 2D" oninput="calcGXXien(gxXienSize)"></textarea></div>
+      <div class="gx-xien-buttons">
+        <button type="button" data-size="2" onclick="calcGXXien(2)">XIÊN 2</button>
+        <button type="button" data-size="3" onclick="calcGXXien(3)">XIÊN 3</button>
+        <button type="button" data-size="4" onclick="calcGXXien(4)">XIÊN 4</button>
+        <button type="button" data-size="6" onclick="calcGXXien(6)">XIÊN 6</button>
+        <button type="button" data-size="7" onclick="calcGXXien(7)">XIÊN 7</button>
+      </div>
+      <div class="result gx-result" id="gxXienResult"></div>
+      <div class="count" id="gxXienCount"></div>
+      <div class="gx-result-actions">
+        <button class="copy" type="button" onclick="copyGXResult('gxXienResult')">COPY</button>
+        <button class="del" type="button" onclick="clearGXPart('xien')">XOÁ</button>
+      </div>
+    </div>`
+  document.querySelectorAll('#tab3 input').forEach(e=>{
+    e.setAttribute('inputmode','numeric')
+    e.setAttribute('pattern','[0-9]*')
+  })
+}
+
+function parseGXParts(text){
+  const out=[]
+  const runs=String(text||'').match(/\d+/g)||[]
+  for(const run of runs){
+    if(run.length>=2 && run.length<=4) out.push(run)
+    else if(run.length>4 && run.length%2===0){
+      for(let i=0;i<run.length;i+=2) out.push(run.slice(i,i+2))
+    }
+  }
+  return [...new Set(out)]
+}
+
+function gxDigits(id){
+  return [...new Set((document.getElementById(id).value||'').replace(/\D/g,'').split('').filter(Boolean))]
+}
+
+function calcGX(){
+  const parts=parseGXParts(document.getElementById('gxDan').value)
+  const d2=parts.filter(x=>x.length===2)
+  const d3=parts.filter(x=>x.length===3)
+  const c3=gxDigits('gxCang3')
+  const c4=gxDigits('gxCang4')
+  // 3D luôn phải đủ đúng 3 chữ số: Càng 3D + dàn 2D.
+  const result3=[...new Set(c3.flatMap(c=>d2.map(n=>c+n)))].filter(n=>n.length===3)
+  // 4D luôn phải ghép đủ 4 chữ số: Càng 4D + một số 3D hoàn chỉnh.
+  const base3=[...new Set([...d3,...result3])]
+  const result4=[...new Set(c4.flatMap(c=>base3.map(n=>c+n)))].filter(n=>n.length===4)
+  // Một kết quả chỉ dùng một loại: có Càng 4D thì chỉ hiện 4D, ngược lại chỉ hiện 3D.
+  const result=(c4.length ? result4 : result3).sort((a,b)=>Number(a)-Number(b))
+  document.getElementById('gxResult').innerText=result.join(',')
+  document.getElementById('gxCount').innerText=result.length?result.length+' số':''
+  saveGX()
+}
+
+function gxCombinations(items,size){
+  const result=[]
+  const walk=(start,chosen)=>{
+    if(chosen.length===size){result.push(chosen.join('-'));return}
+    for(let i=start;i<=items.length-(size-chosen.length);i++) walk(i+1,[...chosen,items[i]])
+  }
+  if(size<=items.length) walk(0,[])
+  return result
+}
+
+function calcGXXien(size){
+  gxXienSize=size
+  document.querySelectorAll('#tab3 .gx-xien-buttons button').forEach(btn=>btn.classList.toggle('active',Number(btn.dataset.size)===size))
+  const nums=[...new Set(parseGXParts(document.getElementById('gxXienDan').value).filter(x=>x.length===2))]
+  const result=gxCombinations(nums,size)
+  document.getElementById('gxXienResult').innerText=result.join(',')
+  document.getElementById('gxXienCount').innerText=result.length?result.length+' xiên':''
+  saveGX()
+}
+
+function copyGXResult(id){
+  const text=document.getElementById(id).innerText
+  if(text) copyText(text)
+}
+
+function clearGXPart(part){
+  if(part==='main'){
+    document.getElementById('gxDan').value=''
+    document.getElementById('gxCang3').value=''
+    document.getElementById('gxCang4').value=''
+    calcGX()
+  }else{
+    document.getElementById('gxXienDan').value=''
+    document.getElementById('gxXienResult').innerText=''
+    document.getElementById('gxXienCount').innerText=''
+    saveGX()
+  }
+}
+
+const THEME_KEY='tool_lo1_theme'
+const THEME_LIST=[
+  ['midnight','Midnight','Tối xanh','#081015'],
+  ['cyan','Cyan Night','Xanh cyan tối','#071a20'],
+  ['graphite','Graphite','Xám than','#202228'],
+  ['purple','Purple Night','Tím đêm','#24173a'],
+  ['forest','Forest','Xanh rừng','#10271b'],
+  ['snow','Snow','Trắng xanh','#f3f7fc'],
+  ['sky','Sky Blue','Xanh trời','#eaf5ff'],
+  ['mint','Mint','Xanh mint','#effbf7'],
+  ['lavender','Lavender','Tím lavender','#f6f1ff'],
+  ['sand','Sand','Vàng kem','#fff8ed']
+]
+
+function applyTheme(id,close=true){
+  THEME_LIST.forEach(([name])=>document.body.classList.remove('theme-'+name))
+  document.body.classList.add('theme-'+id)
+  document.querySelectorAll('.theme-choice').forEach(btn=>btn.classList.toggle('active',btn.dataset.theme===id))
+  try{localStorage.setItem(THEME_KEY,id)}catch(e){}
+  if(close) document.getElementById('themeOverlay').classList.remove('open')
+}
+
+function setupThemeMenu(){
+  const choices=THEME_LIST.map(([id,name,desc,color])=>`<button type="button" class="theme-choice" data-theme="${id}"><span class="theme-swatch" style="background:${color}"></span><span><b>${name}</b><small>${desc}</small></span></button>`).join('')
+  document.body.insertAdjacentHTML('afterbegin',`
+    <button type="button" class="theme-menu-btn" id="themeMenuBtn" aria-label="Mở chọn giao diện"><span></span></button>
+    <div class="theme-overlay" id="themeOverlay" aria-hidden="true">
+      <div class="theme-sheet">
+        <div class="theme-head"><strong>CHỌN GIAO DIỆN</strong><button type="button" class="theme-close" id="themeClose">×</button></div>
+        <div class="theme-grid">${choices}</div>
+      </div>
+    </div>`)
+  const overlay=document.getElementById('themeOverlay')
+  document.getElementById('themeMenuBtn').addEventListener('click',()=>overlay.classList.add('open'))
+  document.getElementById('themeClose').addEventListener('click',()=>overlay.classList.remove('open'))
+  overlay.addEventListener('click',e=>{if(e.target===overlay) overlay.classList.remove('open')})
+  overlay.querySelectorAll('.theme-choice').forEach(btn=>btn.addEventListener('click',()=>applyTheme(btn.dataset.theme)))
+  let saved='midnight'
+  try{saved=localStorage.getItem(THEME_KEY)||saved}catch(e){}
+  applyTheme(THEME_LIST.some(([id])=>id===saved)?saved:'midnight',false)
+}
+
+function saveGX(){
+  const state={dan:document.getElementById('gxDan').value,c3:document.getElementById('gxCang3').value,c4:document.getElementById('gxCang4').value,xien:document.getElementById('gxXienDan').value,size:gxXienSize}
+  try{localStorage.setItem(GX_KEY,JSON.stringify(state))}catch(e){console.warn('Không thể lưu tab 3D/4D + Xiên:',e)}
+}
+
+function loadGX(){
+  let state={}
+  try{state=JSON.parse(localStorage.getItem(GX_KEY)||'{}')}catch(e){state={}}
+  const fields=[['gxDan','dan'],['gxCang3','c3'],['gxCang4','c4'],['gxXienDan','xien']]
+  fields.forEach(([id,key])=>{if(typeof state[key]==='string') document.getElementById(id).value=state[key]})
+  if([2,3,4,6,7].includes(Number(state.size))) gxXienSize=Number(state.size)
+  if(document.getElementById('gxDan').value || document.getElementById('gxCang3').value || document.getElementById('gxCang4').value) calcGX()
+  if(document.getElementById('gxXienDan').value) calcGXXien(gxXienSize)
+}
+
+function setupNumericKeyboard(){
+  const pad = document.createElement('div')
+  pad.className = 'num-pad'
+  pad.innerHTML = `
+    <div class="pad-title">BÀN PHÍM SỐ</div>
+    <button type="button" id="padPaste" class="pad-action pad-paste" data-action="paste" style="display:none">DÁN</button>
+    <button type="button" data-key="1">1</button>
+    <button type="button" data-key="2">2</button>
+    <button type="button" data-key="3">3</button>
+    <button type="button" data-key="4">4</button>
+    <button type="button" data-key="5">5</button>
+    <button type="button" data-key="6">6</button>
+    <button type="button" data-key="7">7</button>
+    <button type="button" data-key="8">8</button>
+    <button type="button" data-key="9">9</button>
+    <button type="button" class="pad-action pad-done" data-action="done">Xong</button>
+    <button type="button" data-key="0">0</button>
+    <button type="button" class="pad-action" data-action="backspace">⌫</button>
+  `
+  document.body.appendChild(pad)
+
+  let activeInput = null
+
+  const closePad = () => {
+    activeInput = null
+    pad.classList.remove('open')
+  }
+
+  const emitInput = () => {
+    if(!activeInput) return
+    activeInput.dispatchEvent(new Event('input',{bubbles:true}))
+  }
+
+  const updatePasteButton = () => {
+    const allowed = activeInput && activeInput.closest('#tab2,#tab3')
+    document.getElementById('padPaste').style.display = allowed ? 'block' : 'none'
+  }
+
+  const pasteIntoActive = async () => {
+    if(!activeInput) return
+    try{
+      if(!navigator.clipboard || !navigator.clipboard.readText) throw new Error('clipboard-unavailable')
+      const text = await navigator.clipboard.readText()
+      activeInput.value = activeInput.tagName === 'TEXTAREA' ? text : text.replace(/\D/g,'')
+      emitInput()
+    }catch(e){
+      alert('Không đọc được clipboard. Hãy cấp quyền Dán cho ứng dụng.')
+    }
+  }
+
+  pad.addEventListener('click',e=>{
+    const btn = e.target.closest('button')
+    if(!btn || !activeInput) return
+
+    const key = btn.dataset.key
+    const action = btn.dataset.action
+
+    if(key !== undefined){
+      activeInput.value += key
+      emitInput()
+      return
+    }
+
+    if(action === 'paste'){
+      pasteIntoActive()
+    }else if(action === 'backspace'){
+      activeInput.value = activeInput.value.slice(0,-1)
+      emitInput()
+    }else if(action === 'done'){
+      const target = activeInput
+      closePad()
+      target.blur()
+    }
+  })
+
+  document.querySelectorAll('input,textarea').forEach(e=>{
+    e.setAttribute('inputmode','none')
+    e.setAttribute('autocomplete','new-password')
+    e.setAttribute('autocorrect','off')
+    e.setAttribute('autocapitalize','off')
+    e.setAttribute('spellcheck','false')
+    e.setAttribute('aria-autocomplete','none')
+    e.addEventListener('focus',()=>{
+      activeInput = e
+      pad.classList.add('open')
+      updatePasteButton()
+    })
+    e.addEventListener('click',()=>{
+      activeInput = e
+      pad.classList.add('open')
+      updatePasteButton()
+    })
+  })
+
+  document.addEventListener('pointerdown',e=>{
+    if(activeInput && !pad.contains(e.target) && e.target !== activeInput){
+      closePad()
+    }
+  })
 }
 /* INIT */
+setupThemeMenu();
 render1();
+renderGTab();
+renderGXTab();
+setupNumericKeyboard();
 load();
+loadG();
+loadGX();
 </script>
 </body>
 </html>
